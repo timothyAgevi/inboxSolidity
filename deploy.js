@@ -17,3 +17,4 @@ const deploy = async ()=>{
     .deploy({ data:bytecode,arguments:['Hi there!']})
     .send({ gas: '1000000', from:accounts[0]});
 }
+deploy();
