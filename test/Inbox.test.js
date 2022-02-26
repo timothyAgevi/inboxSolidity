@@ -29,7 +29,7 @@ const {interface,bytecode}= require('../compile')
 // });
 let accounts;
 let inbox;
-let INITIAL_STRING ='Hi there !'
+
 beforeEach( async ()=>{
     //get a list of all acounts
    accounts = await web3.eth.getAccounts()
