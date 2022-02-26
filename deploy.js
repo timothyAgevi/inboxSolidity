@@ -8,3 +8,12 @@ const provider = new HDWalletProvider(
     'https://rinkeby.infura.io/v3/2d040a93bf9143c0815bd73f1f76ac85'
 )
 const web3=new Web3(provider); 
+
+const deploy = async ()=>{
+    //list of unlock a/c
+    const accounts = await web3.eth.getAccounts();
+    //
+    await new web3.eth.Contract(JSON.parse(interface))
+    .deploy({ data:bytecode,arguments:['Hi there!']})
+    .send({ gas: '1000000', from:accounts[0]});
+}
