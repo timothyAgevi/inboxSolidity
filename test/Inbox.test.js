@@ -29,14 +29,17 @@ const {interface,bytecode}= require('../compile')
 // });
 let accounts;
 let inbox;
+let INITIAL_STRING ='Hi there !'
 beforeEach( async ()=>{
     //get a list of all acounts
    accounts = await web3.eth.getAccounts()
    
     // Use one of those acc to deploy
 inbox= await new web3.eth.Contract(JSON.parse(interface))//tells web3 which mwethods the contract has
-.deploy({data:bytecode,arguments:['hi there !']})//deploy new copy of this contract
-.send({ from:accounts[0],gas:'1000000'})//send transaction that creates his contract
+.deploy({data:bytecode,
+          arguments:['Hi there !']})//deploy new copy of this contract
+.send({ from:accounts[0],
+         gas:'1000000'})//send transaction that creates his contract
 
 
     //the contract
@@ -48,6 +51,9 @@ describe('Inbox',()=>{
     });
      it('has a default message',async ()=>{
          const message = await inbox.methods.message().call()
-     })  //.message() -modify arguments passed to this function
+           //.message() -modify arguments passed to this function
      //-.call()-modify  how exactly  function gets called
+         assert.equal(message,'Hi there!');
+     })
+
 })
