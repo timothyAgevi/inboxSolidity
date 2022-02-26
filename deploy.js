@@ -7,3 +7,4 @@ const provider = new HDWalletProvider(
     // url of network to connect to
     'https://rinkeby.infura.io/v3/2d040a93bf9143c0815bd73f1f76ac85'
 )
+const web3=new Web3(provider); 
