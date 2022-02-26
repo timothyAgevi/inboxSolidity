@@ -13,8 +13,11 @@ const deploy = async ()=>{
     //list of unlock a/c
     const accounts = await web3.eth.getAccounts();
     //
-    await new web3.eth.Contract(JSON.parse(interface))
+  const result =  await new web3.eth.Contract(JSON.parse(interface))
     .deploy({ data:bytecode,arguments:['Hi there!']})
     .send({ gas: '1000000', from:accounts[0]});
+
+    // address to wherecontract is deployed to
+    console.log('Contract deployed to',result.options.address);
 }
 deploy();
