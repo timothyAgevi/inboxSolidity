@@ -1,3 +1,4 @@
+const { strictEqual } = require('assert');
 const assert = require('assert');
 const ganache= require('ganache-cli');
 const Web3 =require('web3');// constructor function
@@ -53,12 +54,12 @@ describe('Inbox',()=>{
          const message = await inbox.methods.message().call()
            //.message() -modify arguments passed to this function
      //-.call()-modify  how exactly  function gets called
-         assert.equal(message,'Hi there!');
+         strictEqual(message,'Hi there!');// assert.equal
      })
         it('can change the message',async()=>{
            await inbox.methods.setMessage('bye').send({ from :accounts[0]})
             const message = await inbox.methods.message().call()
-            assert.equal(message,'bye');
+            strictEqual(message,'bye');// assert.equal
         })
 
 })
