@@ -2,7 +2,7 @@ const assert = require('assert');
 const ganache= require('ganache-cli');
 const Web3 =require('web3');// constructor function
 const web3 =new Web3(ganache.provider());//instance of web3
-const {interface,bytecode}= require('../compile')
+const {abi,bytecode}= require('../compile')
 
 // testing example line 6-28
 // class Car{
@@ -35,9 +35,9 @@ beforeEach( async ()=>{
    accounts = await web3.eth.getAccounts()
    
     // Use one of those acc to deploy
-inbox= await new web3.eth.Contract(JSON.parse(interface))//tells web3 which mwethods the contract has
+inbox= await new web3.eth.Contract(abi)//tells web3 which mwethods the contract has
 .deploy({data:bytecode,
-          arguments:['Hi there !']})//deploy new copy of this contract
+          arguments:['Hi there!']})//deploy new copy of this contract
 .send({ from:accounts[0],
          gas:'1000000'})//send transaction that creates his contract
 
@@ -56,7 +56,7 @@ describe('Inbox',()=>{
          assert.equal(message,'Hi there!');
      })
         it('can change the message',async()=>{
-            inbox.methods.setMessage('bye').send({ from :accounts[0]})
+           await inbox.methods.setMessage('bye').send({ from :accounts[0]})
             const message = await inbox.methods.message().call()
             assert.equal(message,'bye');
         })
