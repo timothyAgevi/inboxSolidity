@@ -51,14 +51,14 @@ describe('Inbox',()=>{
         assert.ok(inbox.options.address);//checkif .send works address undefined
     });
      it('has a default message',async ()=>{
-         const message = await inbox.methods.message().call()
+         message = await inbox.methods.message().call()
            //.message() -modify arguments passed to this function
      //-.call()-modify  how exactly  function gets called
-         strictEqual(message,'Hi there!');// assert.equal
+         strictEqual(message, 'Hi there!');// assert.equal
      })
         it('can change the message',async()=>{
            await inbox.methods.setMessage('bye').send({ from :accounts[0]})
-            const message = await inbox.methods.message().call()
+            let message = await inbox.methods.message().call()
             strictEqual(message,'bye');// assert.equal
         })
 
