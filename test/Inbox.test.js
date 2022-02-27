@@ -51,7 +51,7 @@ describe('Inbox',()=>{
         assert.ok(inbox.options.address);//checkif .send works address undefined
     });
      it('has a default message',async ()=>{
-         message = await inbox.methods.message().call()
+         message = await inbox.methods.message().call()//calling function
            //.message() -modify arguments passed to this function
      //-.call()-modify  how exactly  function gets called
          strictEqual(message, 'Hi there!');// assert.equal
